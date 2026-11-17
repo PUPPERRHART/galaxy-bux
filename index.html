@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Galaxy Bux - Robux, gamepasses, frutas, contas e itens para Roblox."
+    />
+    <title>Galaxy Bux | Loja Roblox</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@700;800;900&family=Audiowide&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="catalog-policy.js" defer></script>
+    <script src="catalogo-sync.js" defer></script>
+  </head>
+  <body>
+    <div class="page-transition-glow" aria-hidden="true"></div>
+    <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
+
+    <!-- CABEÇALHO / NAVEGAÇÃO -->
+    <header class="topbar">
+      <a href="#inicio" class="logo">
+        <img src="assets/logo horizontal.png" alt="Galaxy Bux" />
+      </a>
+
+      <nav class="nav" aria-label="Menu principal">
+        <a class="active" href="#inicio">Início</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#jogos">Jogos</a>
+        <a href="#jogos">Categorias</a>
+        <a href="#jogos">Produtos</a>
+        <a href="#avaliacoes">Avaliações</a>
+        <a href="#suporte">Suporte</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="search">
+          <span class="sr-only">Pesquisar produtos</span>
+          <input
+            id="product-search"
+            type="search"
+            placeholder="Buscar jogo ou produto..."
+            aria-label="Pesquisar produtos"
+          />
+          <span>⌕</span>
+          <div
+            id="gb21-suggestions"
+            class="gb21-suggestions"
+            role="listbox"
+            aria-label="Sugestões de busca"
+            hidden
+          ></div>
+        </div>
+        <button
+          class="icon-button"
+          id="account-button"
+          type="button"
+          aria-label="Minha conta"
+          title="Minha conta Galaxy Bux"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4.5 20a7.5 7.5 0 0 1 15 0" />
+          </svg>
+        </button>
+        <button
+          class="icon-button cart"
+          id="open-cart"
+          type="button"
+          aria-label="Abrir carrinho"
+          aria-controls="cart-panel"
+          aria-expanded="false"
+        >
+          🛒<b id="cart-count" aria-live="polite">0</b>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO / DESTAQUE PRINCIPAL -->
+      <section class="hero home-section" id="inicio">
+        <div class="hero-glow glow-a"></div>
+        <div class="hero-sparkles" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div class="hero-glow glow-b"></div>
+        <div class="hero-copy">
+          <p class="eyebrow">GALAXY BUX</p>
+          <h1>ROBLOX EM<br /><span>OUTRO NÍVEL</span></h1>
+          <p class="hero-text">
+            Robux, gamepasses, frutas, contas e muito mais.<br />Entrega rápida, segura e
+            com o melhor preço!
+          </p>
+          <div class="hero-buttons">
+            <a class="button primary" href="#jogos">🛒 VER JOGOS</a>
+            <a class="button secondary" href="#como-funciona">◈ COMO FUNCIONA</a>
+          </div>
+          <div class="trust-row">
+            <article>
+              <span>⚡</span>
+              <div><b>ENTREGA RÁPIDA</b><small>Receba em minutos</small></div>
+            </article>
+            <article>
+              <span>♢</span>
+              <div><b>COMPRA SEGURA</b><small>Seus dados protegidos</small></div>
+            </article>
+            <article>
+              <span>♧</span>
+              <div>
+                <b>CATÁLOGO ORGANIZADO</b><small>Encontre seus itens favoritos</small>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <img
+            class="hero-character"
+            src="assets/personagem.png"
+            alt=""
+            fetchpriority="high"
+          />
+          <p class="hero-note">
+            MAIS QUE UMA LOJA,<br />UMA GALÁXIA<br />DE POSSIBILIDADES! ✦
+          </p>
+        </div>
+      </section>
+
+      <!-- JOGOS -->
+      <section class="section home-section" id="jogos">
+        <div class="section-heading">
+          <div>
+            <h2>JOGOS</h2>
+            <p>Escolha o jogo que você procura</p>
+          </div>
+          <a href="#todos-jogos" id="all-games-link">Ver todos os jogos →</a>
+        </div>
+        <div class="game-grid" id="home-games-grid"></div>
+      </section>
+      <section class="section game-view" id="todos-jogos" hidden>
+        <div class="section-heading">
+          <div>
+            <h2>TODOS OS JOGOS</h2>
+            <p>Explore todos os jogos adicionados à Galaxy Bux</p>
+          </div>
+          <a href="#jogos" class="back-to-home">← Voltar</a>
+        </div>
+        <div id="all-games-grid" class="game-grid"></div>
+      </section>
+      <section class="section game-view" id="pagina-jogo" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="game-view-eyebrow">GALAXY BUX / JOGOS</p>
+            <h2 id="game-view-title">JOGO</h2>
+            <p id="game-view-subtitle">Produtos disponíveis</p>
+          </div>
+          <a href="#jogos" class="back-to-home">← Todos os jogos</a>
+        </div>
+        <div
+          id="game-categories"
+          class="category-tabs"
+          aria-label="Categorias do jogo"
+        ></div>
+        <div class="catalog-tools">
+          <label class="search catalog-search"
+            ><input
+              id="game-search"
+              type="search"
+              placeholder="Pesquisar neste jogo..."
+              aria-label="Pesquisar neste jogo" /></label
+          ><select id="game-sort" aria-label="Ordenar produtos">
+            <option value="default">Ordem original</option>
+            <option value="low">Menor preço</option>
+            <option value="high">Maior preço</option>
+            <option value="name">Nome A–Z</option>
+            <option value="available">Disponíveis primeiro</option>
+          </select>
+        </div>
+        <div class="catalog-status">
+          <button type="button" id="gb21-clear-filters" class="gb21-clear" hidden>
+            Limpar filtros ×</button
+          ><span id="catalog-count" aria-live="polite"></span
+          ><label class="favorites-filter"
+            ><input id="favorites-only" type="checkbox" /> ♡ Somente favoritos</label
+          >
+        </div>
+        <div id="game-products" class="product-grid"></div>
+        <div class="catalog-more">
+          <button type="button" class="button secondary" id="load-more" hidden>
+            Carregar mais produtos
+          </button>
+        </div>
+        <p id="game-empty" class="search-empty" hidden>
+          Em breve teremos produtos deste jogo. Confira os outros jogos disponíveis!
+        </p>
+      </section>
+      <section class="promo section home-section">
+        <div>
+          <span>✦</span>
+          <h2>DESTAQUES DA LOJA</h2>
+          <p>Explore os jogos e encontre seus próximos itens.</p>
+        </div>
+        <a class="button primary" href="#jogos">◇ EXPLORAR JOGOS</a>
+      </section>
+
+      <!-- CATÁLOGO / PRODUTOS -->
+      <section class="section catalog home-section" id="catalogo">
+        <div class="section-heading">
+          <div>
+            <h2>EXPLORE NOSSO CATÁLOGO</h2>
+            <p>Entre em um jogo para encontrar seus itens organizados por classe.</p>
+          </div>
+          <a href="#jogos">Escolher jogo →</a>
+        </div>
+        <div class="catalog-invite">
+          <span>✦</span>
+          <div>
+            <h3>SEU UNIVERSO, SEUS ITENS</h3>
+            <p>
+              Gamepasses, frutas permanentes, itens e muito mais: tudo separado dentro de
+              cada jogo.
+            </p>
+          </div>
+          <a class="button primary" href="#jogos">VER JOGOS →</a>
+        </div>
+      </section>
+
+      <!-- BENEFÍCIOS / COMO FUNCIONA -->
+      <section class="section benefits home-section" id="como-funciona">
+        <article>
+          <span>◆</span>
+          <div>
+            <b>FORMAS DE PAGAMENTO</b><small>PIX com atendimento da equipe</small>
+          </div>
+        </article>
+        <article id="suporte">
+          <span>◉</span>
+          <div><b>SUPORTE AO CLIENTE</b><small>Atendimento pelo Discord</small></div>
+        </article>
+        <article>
+          <span>🚀</span>
+          <div><b>ENTREGA ASSISTIDA</b><small>Acompanhe seu atendimento</small></div>
+        </article>
+        <article>
+          <span>♢</span>
+          <div><b>PEDIDO ORGANIZADO</b><small>Detalhes em um só lugar</small></div>
+        </article>
+      </section>
+
+      <!-- AVALIAÇÕES -->
+      <section class="section reviews home-section" id="avaliacoes">
+        <div class="section-heading">
+          <div>
+            <h2>AVALIAÇÕES</h2>
+            <p>Ainda não há avaliações publicadas.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="cart-overlay" class="cart-overlay" hidden></div>
+    <aside
+      id="cart-panel"
+      class="cart-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cart-title"
+      aria-hidden="true"
+      tabindex="-1"
+    >
+      <div class="cart-header">
+        <div>
+          <small>GALAXY BUX</small>
+          <h2 id="cart-title">MEU CARRINHO</h2>
+        </div>
+        <button
+          id="close-cart"
+          class="cart-close"
+          type="button"
+          aria-label="Fechar carrinho"
+        >
+          ✕
+        </button>
+      </div>
+      <div id="cart-items" class="cart-items" aria-live="polite"></div>
+      <div class="cart-footer">
+        <div class="gb23-summary">
+          <span>Meu carrinho</span><strong id="gb23-item-count">0 itens</strong>
+        </div>
+        <div class="cart-total">
+          <span>Total</span><strong id="cart-total">R$ 0,00</strong>
+        </div>
+        <p class="cart-hint">Revise os itens e as quantidades antes de continuar.</p>
+        <p
+          id="cart-checkout-status"
+          class="cart-checkout-status"
+          role="status"
+          aria-live="polite"
+        ></p>
+        <button id="cart-checkout" class="cart-checkout" type="button" disabled>
+          FINALIZAR PEDIDO</button
+        ><button id="clear-cart" type="button" class="cart-clear">
+          Esvaziar carrinho
+        </button>
+      </div>
+    </aside>
+    <dialog
+      id="product-dialog"
+      class="product-dialog gb22-dialog"
+      aria-labelledby="detail-title"
+    >
+      <button
+        type="button"
+        class="detail-close"
+        id="detail-close"
+        aria-label="Fechar detalhes"
+      >
+        ✕
+      </button>
+      <div class="detail-content gb22-content">
+        <div class="gb22-art">
+          <img id="detail-image" alt="" /><span class="gb22-art-caption"
+            >GALAXY BUX · CATÁLOGO</span
+          >
+        </div>
+        <div class="detail-copy gb22-copy">
+          <span class="gb22-eyebrow">DETALHES DO PRODUTO</span
+          ><span id="detail-game" class="gb22-game"></span
+          ><span id="detail-category"></span>
+          <h2 id="detail-title"></h2>
+          <p id="detail-description"></p>
+          <p id="detail-stock" role="status"></p>
+          <strong id="detail-price"></strong>
+          <div class="gb22-actions">
+            <button
+              type="button"
+              id="detail-favorite"
+              class="gb22-favorite"
+              aria-pressed="false"
+            >
+              ♡ Favoritar
+            </button>
+            <div class="gb22-quantity" aria-label="Quantidade">
+              <button type="button" id="detail-minus" aria-label="Diminuir quantidade">
+                −</button
+              ><input
+                id="detail-qty"
+                class="gb241-qty-input"
+                type="number"
+                inputmode="numeric"
+                min="1"
+                step="1"
+                value="1"
+                aria-label="Digite a quantidade desejada"
+              /><button type="button" id="detail-plus" aria-label="Aumentar quantidade">
+                +
+              </button>
+            </div>
+          </div>
+          <button type="button" class="button primary" id="detail-buy">
+            🛒 ADICIONAR AO CARRINHO</button
+          ><small class="gb22-note"
+            >A disponibilidade será conferida ao finalizar seu pedido.</small
+          >
+        </div>
+      </div>
+    </dialog>
+    <nav class="mobile-dock" aria-label="Navegação rápida">
+      <a href="#inicio">⌂<span>Início</span></a
+      ><a href="#jogos">◈<span>Jogos</span></a
+      ><button type="button" id="mobile-search">⌕<span>Buscar</span></button
+      ><button type="button" id="mobile-cart">🛒<span>Carrinho</span></button>
+    </nav>
+    <div id="site-toast" class="site-toast" role="status" aria-live="polite"></div>
+    <button
+      class="back-to-top"
+      id="back-to-top"
+      type="button"
+      aria-label="Voltar ao topo"
+      title="Voltar ao topo"
+    >
+      ↑
+    </button>
+
+    <!-- RODAPÉ -->
+    <footer>
+      <a class="logo footer-logo" href="#inicio">
+        <img src="assets/logo horizontal.png" alt="Galaxy Bux" />
+      </a>
+
+      <p>© 2026 Galaxy Bux. Todos os direitos reservados.</p>
+    </footer>
+    <dialog
+      id="gb-account-dialog"
+      class="gb-account-dialog"
+      aria-labelledby="gb-account-title"
+    >
+      <div class="gb-account-layout">
+        <aside class="gb-account-sidebar">
+          <div class="gb-account-brand">
+            <img src="assets/logo horizontal.png" alt="Galaxy Bux" />
+          </div>
+          <nav class="gb-account-nav" aria-label="Menu da conta">
+            <button type="button" class="active" data-account-tab="orders">
+              ▣ <span>Meus pedidos</span>
+            </button>
+            <button type="button" data-account-tab="profile">
+              ♙ <span>Meu perfil</span>
+            </button>
+            <button type="button" data-account-tab="data">
+              ⚙ <span>Dados da conta</span>
+            </button>
+            <button type="button" data-account-tab="favorites">
+              ♡ <span>Favoritos</span>
+            </button>
+            <button type="button" data-account-tab="support">
+              ♧ <span>Suporte</span>
+            </button>
+          </nav>
+          <a class="gb-account-signout" href="/auth/logout">⇥ &nbsp; Sair da conta</a>
+          <div class="gb-account-planet" aria-hidden="true">✦</div>
+        </aside>
+        <section class="gb-account-main">
+          <header class="gb-account-head">
+            <div>
+              <h2 id="gb-account-title">MINHA CONTA</h2>
+              <p>Gerencie seus pedidos e sua conta.</p>
+            </div>
+            <button type="button" id="gb-account-close" aria-label="Fechar">✕</button>
+          </header>
+          <div id="gb-account-content" aria-live="polite">Carregando...</div>
+          <p class="gb-account-notice">Acompanhe seus pedidos com segurança.</p>
+        </section>
+      </div>
+    </dialog>
+  </body>
+</html>
